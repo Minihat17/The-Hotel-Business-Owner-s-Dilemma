@@ -31,3 +31,21 @@
 * **Uniform Date Format:** ปรับปรุงข้อมูลวันที่ในตาราง `fact_bookings` (เดิมเป็น พ.ศ.) ให้เป็นคริสต์ศักราช (ค.ศ.) เพื่อให้สอดคล้องกับตาราง `dimroomsinventory`
 * **Data Filtering:** ทำการกรองข้อมูลให้เหลือเฉพาะช่วงปี 2025 เพื่อให้การวิเคราะห์อยู่ในขอบเขตที่กำหนดและลดความคลาดเคลื่อนของข้อมูลที่ถูก Generate ขึ้นมา
 * **Standardization:** ตรวจสอบและปรับประเภทข้อมูล (Data Type) ในแต่ละ Table ให้ถูกต้องสำหรับการคำนวณเชิงสถิติ
+
+### **Table 1: fact_bookings**
+นี่คือตารางหลักที่เก็บข้อมูลธุรกรรม (Main Transactional Table) โดยหนึ่งแถวจะแทนข้อมูลการจองหนึ่งรายการ
+
+* **booking_id (Primary Key):** รหัสเฉพาะสำหรับระบุการจอง (เช่น RES-10023)
+* **guest_id:** รหัสเฉพาะสำหรับระบุตัวตนของผู้เข้าพัก
+* **booking_date:** วันที่ทำการจองห้องพัก
+* **check_in_date:** วันที่กำหนดการเช็คอินเข้าพัก
+* **check_out_date:** วันที่กำหนดการเช็คเอาท์ออกจากที่พัก
+* **room_type:** ประเภทของห้องพักที่จอง (เชื่อมโยงไปยัง Room Type dimension)
+* **rate_code_id:** รหัสอ้างอิง (Foreign Key) เชื่อมโยงไปยังข้อมูลเรทราคา (Rate Code dimension)
+* **channel_id:** รหัสอ้างอิง (Foreign Key) เชื่อมโยงไปยังข้อมูลช่องทางการจอง (Booking Channel dimension)
+* **segment_id:** รหัสอ้างอิง (Foreign Key) เชื่อมโยงไปยังข้อมูลกลุ่มลูกค้า (Customer Segment dimension)
+* **status:** สถานะของการจอง (เช่น Confirmed, Cancelled, Checked-Out, No-Show)
+* **total_room_revenue:** รายได้รวมที่ได้รับจากค่าเช่าห้องพัก (ไม่รวมภาษีและบริการเสริมอื่นๆ)
+* **number_of_rooms:** จำนวนห้องพักที่จองในรายการนี้
+* **adults_count:** จำนวนผู้ใหญ่ที่เข้าพัก
+* **children_count:** จำนวนเด็กที่เข้าพัก
