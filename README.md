@@ -34,75 +34,73 @@
 
 # Data Dictionary - Hotel Booking Analysis
 
-หน้านี้รวบรวมรายละเอียดของตารางข้อมูลทั้งหมดที่ใช้ในการวิเคราะห์ข้อมูลการจองโรงแรม เพื่อใช้เป็นคู่มือในการทำ Data Cleaning และ EDA
-
 ---
 
 ### **Table 1: fact_bookings**
-ตารางหลักที่เก็บข้อมูลธุรกรรม (Main Transactional Table) โดยหนึ่งแถวจะแทนข้อมูลการจองหนึ่งรายการ
+ตารางหลักที่เก็บข้อมูลธุรกรรมการจอง (Main Transactional Table)
 
-| Column Name | Description | Note |
-| :--- | :--- | :--- |
-| **booking_id** | รหัสเฉพาะสำหรับระบุการจอง | Primary Key (เช่น RES-10023) |
-| **guest_id** | รหัสเฉพาะสำหรับระบุตัวตนของผู้เข้าพัก | Unique Identifier |
-| **booking_date** | วันที่ทำการจองห้องพัก | - |
-| **check_in_date** | วันที่กำหนดการเช็คอินเข้าพัก | - |
-| **check_out_date** | วันที่กำหนดการเช็คเอาท์ออกจากที่พัก | - |
-| **room_type** | ประเภทของห้องพักที่จอง | เชื่อมโยงไปยัง Room Type dimension |
-| **rate_code_id** | รหัสอ้างอิงสำหรับเรทราคา | Foreign Key |
-| **channel_id** | รหัสอ้างอิงสำหรับช่องทางการจอง | Foreign Key |
-| **segment_id** | รหัสอ้างอิงสำหรับกลุ่มลูกค้า | Foreign Key |
-| **status** | สถานะของการจอง | เช่น Confirmed, Cancelled, No-Show |
-| **total_room_revenue** | รายได้รวมที่ได้รับจากค่าเช่าห้องพัก | ไม่รวมภาษีและบริการเสริม |
-| **number_of_rooms** | จำนวนห้องพักที่จองในรายการนี้ | - |
-| **adults_count** | จำนวนผู้ใหญ่ที่เข้าพัก | - |
-| **children_count** | จำนวนเด็กที่เข้าพัก | - |
+| Column Name | Description | Example | Note |
+| :--- | :--- | :--- | :--- |
+| **booking_id** | รหัสเฉพาะสำหรับระบุการจอง | RES-10023 | Primary Key |
+| **guest_id** | รหัสเฉพาะสำหรับระบุตัวตนของผู้เข้าพัก | 1401 | Unique Identifier |
+| **booking_date** | วันที่ลูกค้าทำการจอง | 13/4/2025 | - |
+| **check_in_date** | วันที่กำหนดการเข้าพัก | 4/5/2025 | - |
+| **check_out_date** | วันที่กำหนดออกจากที่พัก | 6/5/2025 | - |
+| **room_type** | ประเภทของห้องพักที่จอง | Deluxe, Suite | เชื่อมโยงกับ Room Dimension |
+| **rate_code_id** | รหัสเรทราคาที่ใช้ | RCCORP | Foreign Key |
+| **channel_id** | รหัสช่องทางการจอง | CHEXP | Foreign Key |
+| **segment_id** | รหัสกลุ่มเป้าหมายลูกค้า | Leisure, Business | Foreign Key |
+| **status** | สถานะล่าสุดของการจอง | Confirmed, Cancelled | - |
+| **total_room_revenue** | รายได้รวมค่าห้องพัก (ไม่รวมภาษี) | 340.85 | หน่วยสกุลเงิน |
+| **number_of_rooms** | จำนวนห้องที่จองในครั้งนั้น | 1 | - |
+| **adults_count** | จำนวนผู้ใหญ่ | 2 | - |
+| **children_count** | จำนวนเด็ก | 1 | - |
 
 ---
 
 ### **Table 2: dim_room_inventory**
-ตารางมิติที่เก็บรายละเอียดข้อมูลห้องพักคงคลังในแต่ละวัน
+ตารางข้อมูลจำนวนห้องพักคงคลังในแต่ละวัน
 
-| Column Name | Description |
-| :--- | :--- |
-| **date** | วันที่ของข้อมูลสินค้าคงคลัง (Inventory Date) |
-| **totalcapacity** | จำนวนห้องพักทั้งหมดที่มีในโรงแรม (ความจุสูงสุด) |
-| **roomsoutoforder** | จำนวนห้องพักที่ปิดปรับปรุงหรือไม่สามารถใช้งานได้ |
-| **roomsavailableforsale** | จำนวนห้องพักที่เปิดให้จองหรือพร้อมขายจริงในวันนั้น |
+| Column Name | Description | Example |
+| :--- | :--- | :--- |
+| **date** | วันที่บันทึกข้อมูลคงคลัง | 01/01/2025 |
+| **totalcapacity** | จำนวนห้องทั้งหมดที่มี | 200 |
+| **roomsoutoforder** | จำนวนห้องที่ปิดปรับปรุง (ใช้งานไม่ได้) | 5 |
+| **roomsavailableforsale** | จำนวนห้องที่ว่างพร้อมขายจริง | 195 |
 
 ---
 
 ### **Table 3: dim_rate_codes**
-ตารางมิติที่เก็บรายละเอียดของรหัสเรทราคาและโปรโมชั่นต่างๆ
+ตารางรายละเอียดรูปแบบราคาและโปรโมชั่น
 
-| Column Name | Description |
-| :--- | :--- |
-| **ratecodeid** | รหัสอ้างอิงสำหรับเรทราคา (เช่น RACK, RCCORP) |
-| **ratename** | ชื่อเรียกของเรทราคา (เช่น Standard Rate, Corporate Rate) |
-| **description** | รายละเอียด (เช่น รวมอาหารเช้า หรือ เฉพาะห้องพัก) |
-| **is_commissionable** | สถานะว่าเรทนี้ต้องจ่ายค่าคอมมิชชั่นหรือไม่ (True/False) |
+| Column Name | Description | Example |
+| :--- | :--- | :--- |
+| **ratecodeid** | รหัสเรทราคา | RACK |
+| **ratename** | ชื่อเรียกของเรทราคา | Standard Rate |
+| **description** | รายละเอียดเพิ่มเติม | Includes breakfast |
+| **is_commissionable** | ต้องจ่ายค่าคอมมิชชั่นหรือไม่ | False, True |
 
 ---
 
 ### **Table 4: dim_channels**
-ตารางมิติที่เก็บรายละเอียดของช่องทางการจองต่างๆ
+ตารางรายละเอียดช่องทางการจอง
 
-| Column Name | Description |
-| :--- | :--- |
-| **channel_id** | รหัสเฉพาะสำหรับระบุช่องทางการจอง |
-| **channel_name** | ชื่อเรียกของช่องทางการจอง (เช่น Direct, Expedia) |
-| **channel_type** | ประเภทของช่องทาง (เช่น Direct, OTA) |
-| **commission_rate** | อัตราค่าคอมมิชชั่นที่ต้องจ่ายให้กับช่องทางนั้นๆ |
+| Column Name | Description | Example |
+| :--- | :--- | :--- |
+| **channel_id** | รหัสช่องทาง | CHAGD |
+| **channel_name** | ชื่อเรียกช่องทาง | Agoda |
+| **channel_type** | ประเภทของช่องทาง | OTA, Direct |
+| **commission_rate** | อัตราค่าคอมมิชชั่น | 0.15 (คือ 15%) |
 
 ---
 
 ### **Table 5: dim_calendar**
-ตารางมิติที่เก็บรายละเอียดข้อมูลเกี่ยวกับวันที่และปฏิทิน
+ตารางข้อมูลปฏิทินและช่วงเวลา
 
-| Column Name | Description |
-| :--- | :--- |
-| **datekey** | วันที่ที่ใช้เป็นรหัสอ้างอิง (Date Reference) |
-| **dayname** | ชื่อของวันในสัปดาห์ (Monday, Tuesday, etc.) |
-| **is_weekend** | ระบุว่าเป็นวันหยุดสุดสัปดาห์หรือไม่ (True/False) |
-| **is_holiday** | ระบุว่าเป็นวันหยุดนักขัตฤกษ์หรือไม่ (True/False) |
-| **season** | ช่วงฤดูกาลของการท่องเที่ยว (High, Low, Shoulder) |
+| Column Name | Description | Example |
+| :--- | :--- | :--- |
+| **datekey** | วันที่อ้างอิง | 1/1/2025 |
+| **dayname** | ชื่อวันในสัปดาห์ | Wednesday |
+| **is_weekend** | เป็นวันเสาร์-อาทิตย์หรือไม่ | False, True |
+| **is_holiday** | เป็นวันหยุดนักขัตฤกษ์หรือไม่ | False, True |
+| **season** | ช่วงฤดูกาลท่องเที่ยว | High, Low, Shoulder |
