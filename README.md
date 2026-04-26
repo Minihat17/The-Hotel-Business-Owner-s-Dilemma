@@ -27,6 +27,21 @@
 
 # Data Dictionary - Hotel Booking Analysis
 
+## AI Data Quality
+
+Would you kind generate data in .csv file and create room type name for few type(2-3 type) in fact_booking.csv. please generate reference by table i write before and using dimension and measures within 10,000 rows for .csv and please making according data. you can make situation for making insight data or making some trouble in data but you won't tell me. i will analyze and insight with myself
+
+---
+
+### การดำเนินการมีดังนี้:
+
+* **(Data Structuring):** จัดทำตารางข้อมูลการจอง (Fact Booking) จำนวน 10,000 รายการ โดยกำหนดให้มีประเภทห้องพักที่หลากหลาย (2-3 ประเภท) เพื่อใช้เป็นตัวแปรหลักในการวิเคราะห์ (Dimensions) ควบคู่ไปกับตัวชี้วัดทางธุรกิจ (Measures) เช่น รายได้เฉลี่ย (ADR) และอัตราการเข้าพัก (Occupancy)
+
+* **(Business Logic Integration):** ข้อมูลทั้งหมดจะถูกสร้างขึ้นภายใต้เงื่อนไข "กลยุทธ์การบริหารรายได้" (Revenue Management) ที่กำหนดไว้ก่อนหน้า เพื่อให้ข้อมูลมีความสมจริงและสะท้อนพฤติกรรมตลาดในสถานการณ์จริง
+
+* **(Data Anomaly & Insight Simulation):** มีการสอดแทรก "เงื่อนไขพิเศษ" หรือ "ปัญหาด้านคุณภาพข้อมูล" (Data Quality Issues) ลงไปในชุดข้อมูลโดยเจตนา เช่น ข้อมูลที่ผิดปกติ (Outliers) หรือความไม่สอดคล้องของตัวเลขในบางมิติ
+
+* **(Self-Analytical Challenge):** เพื่อทดสอบทักษะการตรวจสอบความถูกต้องของข้อมูล (Data Validation) และการวิเคราะห์หาข้อมูลเชิงลึก (Insight Discovery) โดยผู้ใช้งานจะเป็นผู้ดำเนินการค้นหาและแก้ไขปัญหาดังกล่าวด้วยตนเอง เพื่อพัฒนาทักษะการวิเคราะห์ขั้นสูง
 ---
 
 ### **Table 1: fact_bookings**
