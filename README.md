@@ -47,6 +47,17 @@
 * **Time-bound**
     * ภายใน 12 เดือน เพื่อเปรียบเทียบช่วงเวลาก่อนหน้า
 
+---
+### AI Data Quality 
+
+Would you kind generate data in .csv file and create room type name for few type(2-3 type) in fact_booking.csv. please generate reference by table i write before and using dimension and measures within 10,000 rows for .csv and please making according data. you can make situation for making insight data or making some trouble in data but you won't tell me. i will analyze and insight with myself
+
+**การวางโครงสร้าง:** สร้างไฟล์ fact_booking.csv ขนาด 10,000 แถว ที่มีทั้ง Dimensions (หมวดหมู่ เช่น ประเภทห้อง 2-3 แบบ) และ Measures (ตัวเลข เช่น รายได้) ให้สัมพันธ์กับข้อมูลเดิมที่คุณมี
+
+**การฝังInsight:** ใส่"แนวโน้ม"หรือพฤติกรรมการจองที่สมเหตุสมผลลงไปเพื่อนำไปPlotกราฟแล้วเจอInsight
+
+**Data Quality Test:** จงใจใส่"ปัญหา"เข้าไปในข้อมูล(เช่น ค่าผิดพลาด, ค่าว่าง, หรือตัวเลขที่โดดผิดปกติ) โดยไม่บอก เพื่อฝึกทักษะการ Clean ข้อมูลก่อนวิเคราะห์
+
 ## Methodology
 
 * **Columns ประเภท Data ในแต่ละ Table ไม่สอดคล้องกันในส่วนปีศักราช**
