@@ -63,7 +63,9 @@
 
 **Sample Dataset :** 5 tables
 
-* **Fact_Booking :** 10,000 rows
+**Fact_Booking : 10,000 rows**
+
+<div align="center">
 
 | Attribute | Describe |
 | :---: | :---: |
@@ -82,7 +84,13 @@
 | childcount | จำนวนลูกค้าที่เป็นเด็ก |
 | totalroomrevenue | รายได้ที่ได้รับ |
 
-* **Dim_room_inventory :** 366 rows
+</div>
+
+---
+
+**Dim_room_inventory : 366 rows**
+
+<div align="center">
 
 | Attribute | Describe |
 | :---: | :---: |
@@ -91,7 +99,13 @@
 | roomsoutoforder | จำนวนห้องพักที่ไม่ว่าง |
 | roomsavailableforsale | จำนวนห้องพักที่ว่าง |
 
-* **Dim_rate_code :** 3 rows
+</div>
+
+---
+
+**Dim_rate_code : 3 rows**
+
+<div align="center">
 
 | Attribute | Describe |
 | :---: | :---: |
@@ -100,7 +114,13 @@
 | description | อธิบายสิทธิพิเศษ |
 | iscommissionable | เป็นค่าคอมมิชชั่น |
 
-* **Dim_calender :** 366 rows
+</div>
+
+---
+
+**Dim_calender : 366 rows**
+
+<div align="center">
 
 | Attribute | Describe |
 | :---: | :---: |
@@ -110,7 +130,13 @@
 | is_holiday | ระบุประเภทเป็นวันนักขัตฤกษ์ |
 | season | ช่วงเวลาหน้าท่องเที่ยว |
 
-* **dim_channels :** 3 rows
+</div>
+
+---
+
+**dim_channels : 3 rows**
+
+<div align="center">
 
 | Attribute | Describe |
 | :---: | :---: |
@@ -118,6 +144,8 @@
 | channelname | ชื่อของช่องทางการจอง |
 | channeltype | ประเภทของการจอง |
 | commissionrate | อัตราค่าคอมมิชชั่น |
+
+</div>
 
 ---
 
