@@ -30,7 +30,9 @@
 
 ---
 
-## SMART
+## SMART Objective
+
+เพิ่มรายได้กำไรสุทธิ (**Net RevPAR**) ขึ้น **10-15%** ภายใน **12 เดือน** โดยการปรับสัดส่วนการจองตรง (**Direct Booking**) ให้ถึง **35%**, ยกเลิกการใช้โปรโมชั่นลดราคาที่ไม่ตอบโจทย์ในช่วง High Season และเปลี่ยนมาใช้ระบบปรับราคาตามความต้องการตลาด (**Dynamic Pricing**) เพื่ออุดช่องว่างรายได้ที่หายไปและรีดกำไรจากกลุ่มลูกค้าจองด่วนให้ได้สูงสุด
 
 * **Specific**
     * เพิ่มประสิทธิภาพการกำหนดราคาและการจัดการรายได้ เพื่อปรับปรุง **RevPAR** ให้สูงขึ้น โดยเน้นที่การ optimize pricing และ channel mix
@@ -168,15 +170,26 @@ Would you kind generate data in .csv file and create room type name for few type
 
 ---
 
-## Methodology: Data Cleaning
+## Methodology
 
-* **Variable ประเภท วัน/เดือน/ปี มีปัญหาที่ Microsoft excel และ Tableau ไม่สามารถอ่าน format ที่ถูกต้องได้ จำเป็นที่จะต้อง Trim และสร้าง Columns วัน/เดือน/ปี ขึ้นมาใหม่ทั้งหมด**
+### Data Cleaning
 
+* **Variable ประเภท วัน/เดือน/ปี มีปัญหาที่ Microsoft excel และ Tableau ไม่สามารถอ่าน format ที่ถูกต้องได้:** จำเป็นที่จะต้อง Trim และสร้าง Columns วัน/เดือน/ปี ขึ้นมาใหม่ทั้งหมด
+* **Generate Data ได้ข้อมูลเกินออกมาจากเดิม:** Data จะอยู่ในช่วงปี 2025 จะมีข้อมูลครบถ้วน แต่ข้อมูลในปี 2026 จะไม่มีข้อมูลการจองและรายได้ (null) จึงทำการ Filter ดรอปข้อมูลในปี 2026 ออกไป
+* **ปรับ Datatypes ให้เหมาะสม:** เพื่อให้สามารถนำข้อมูลไป join table ได้
 
-* **Generate Data ได้ข้อมูลเกินออกมาจากเดิม Data จะอยู่ในช่วงปี 2025 จะมีข้อมูลครบถ้วน แต่ข้อมูลในปี 2026 จะไม่มีข้อมูลการจองและรายได้ (null) จึงทำการ Filter ดรอปข้อมูลในปี 2026 ออกไป**
+### Data Transformation
 
-
-* **ปรับ Datatypes ให้เหมาะสมและสามารถนำข้อมูลไป join table ได้**
+* **สร้าง `stay_date` แยกวันที่อยู่เป็น list:** เพื่อเก็บตัวแปรห้องที่ถูกขายไว้เป็นรายวันอย่างถูกต้องโดย
+    * `List.Dates([checkindate], Duration.Days([checkoutdate]-[checkindate]), #duration(1,0,0,0))`
+* **Add Columns KPIs ทั้งหมด**
+    * RevPAR
+    * ADR
+    * OCC
+    * LOS
+    * BLT
+* **แปลง LOS และ BLT ที่เป็น Duration ให้เป็น category:** เพื่อเก็บเป็นหมวดหมู่
+* **JOIN ตารางให้สอดคล้องกับทำ EDA**
 
 ---
 
